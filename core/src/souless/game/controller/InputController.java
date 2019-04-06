@@ -9,18 +9,17 @@ import com.badlogic.gdx.InputProcessor;
 import souless.game.model.ResourcesManager;
 import souless.game.model.World;
 import souless.game.objects.moving.EntityMoving;
-import souless.game.view.ObjectRenderer;
 
 public class InputController implements InputProcessor {
 
     private final World WORLD;
-    private final ObjectRenderer objectRenderer;
+//    private final ObjectRenderer objectRenderer;
     private final ResourcesManager resManager;
     
-    public InputController(World world, ObjectRenderer objR, ResourcesManager resM)
+    public InputController(World world, ResourcesManager resM)
     {
         WORLD = world;
-        objectRenderer = objR;
+//        objectRenderer = objR;
         resManager = resM;
     }
     
@@ -81,12 +80,12 @@ public class InputController implements InputProcessor {
             }
             case Keys.PAGE_UP:
             {
-                objectRenderer.listConsole(1);
+//                objectRenderer.listConsole(1);
                 break;
             }
             case Keys.PAGE_DOWN:
             {
-                objectRenderer.listConsole(-1);
+//                objectRenderer.listConsole(-1);
                 break;
             }
             case Keys.ESCAPE:

@@ -8,27 +8,24 @@ import souless.game.controller.InputController;
 import souless.game.model.ConsoleLogData;
 import souless.game.model.ResourcesManager;
 import souless.game.model.World;
-import souless.game.view.ObjectRenderer;
-import org.springframework.context.annotation.*;
+import souless.game.view.IComponent;
 
-@Configuration
-@ComponentScan
 public class SoulessGame extends ApplicationAdapter {
 	private ApplicationContext context;
 	private ResourcesManager resourcesManager;
-	ObjectRenderer objectRenderer;
+	private IComponent renderer;
 	World world;
 	InputController input_controller;
 
 	@Override
 	public void create () {
-		this.context = new AnnotationConfigApplicationContext(SoulessGame.class);
-		this.resourcesManager = (ResourcesManager)this.context.getBean("ResourceManager");
+		this.context = new AnnotationConfigApplicationContext(SoulessConfiguration.class);
+		this.resourcesManager = this.context.getBean(ResourcesManager.class);
+		this.renderer = (IComponent)this.context.getBean("GameComponent");
 
 		resourcesManager.setLogData(new ConsoleLogData());
 		world = resourcesManager.loadWorld("test_world");
-		objectRenderer = new ObjectRenderer(world, resourcesManager);
-		input_controller = new InputController(world, objectRenderer, resourcesManager);
+		input_controller = new InputController(world, resourcesManager);
 		Gdx.input.setInputProcessor(input_controller);
 	}
 
@@ -36,15 +33,16 @@ public class SoulessGame extends ApplicationAdapter {
 	/**
 	 * Рендер
 	 */
-	public void render () {
-		objectRenderer.render();
+	public void render ()
+	{
+		this.renderer.render();
 	}
 
-	@Override
-	public void resize(int width, int height)
-	{
-		this.objectRenderer.resize(width, height);
-	}
+//	@Override
+//	public void resize(int width, int height)
+//	{
+//		this.renderer.resize(width, height);
+//	}
 
 	@Override
 	/**

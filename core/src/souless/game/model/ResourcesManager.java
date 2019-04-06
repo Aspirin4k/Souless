@@ -7,10 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import org.springframework.stereotype.Service;
 import souless.game.view.objects.ViewObjectFactory;
 
-@Service("ResourceManager")
 public class ResourcesManager
 {
     private final AssetManager assets;
