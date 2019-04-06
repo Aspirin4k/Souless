@@ -7,9 +7,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import org.springframework.stereotype.Service;
 import souless.game.view.objects.ViewObjectFactory;
 
-public class ResourcesManager {
+@Service("ResourceManager")
+public class ResourcesManager
+{
     private final AssetManager assets;
     
     // Текстурные атласы и шрифты
@@ -26,9 +29,8 @@ public class ResourcesManager {
     
     /**
      * Создает менеджер ресурсов.
-     * @param mode режим, в котором действует менеджер - в зависимости от этого подгружаются ресурсы
      */
-    public ResourcesManager(ManagerMode mode)
+    public ResourcesManager()
     {
         assets = new AssetManager();
         
