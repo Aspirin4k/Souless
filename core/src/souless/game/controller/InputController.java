@@ -7,16 +7,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import souless.game.model.ResourcesManager;
-import souless.game.model.World;
+import souless.game.model.world.entity.WorldResource;
 import souless.game.objects.moving.EntityMoving;
 
 public class InputController implements InputProcessor {
 
-    private final World WORLD;
+    private final WorldResource WORLD;
 //    private final ObjectRenderer objectRenderer;
     private final ResourcesManager resManager;
     
-    public InputController(World world, ResourcesManager resM)
+    public InputController(WorldResource world, ResourcesManager resM)
     {
         WORLD = world;
 //        objectRenderer = objR;
@@ -33,49 +33,49 @@ public class InputController implements InputProcessor {
             case Keys.NUMPAD_7:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.LEFT_UP, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.NUMPAD_8:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.UP, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.NUMPAD_9:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.RIGHT_UP, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.NUMPAD_4:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.LEFT, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.NUMPAD_6:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.RIGHT, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.NUMPAD_1:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.LEFT_DOWN, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.NUMPAD_2:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.DOWN, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.NUMPAD_3:
             {
                 WORLD.getPlayer().move(EntityMoving.Direction.RIGHT_DOWN, WORLD.getMap());
-                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
+//                resManager.getLogData().add("Координаты: " + WORLD.getPlayer().getPosition().x + ", " + WORLD.getPlayer().getPosition().y );
                 break;
             }
             case Keys.PAGE_UP:
@@ -95,7 +95,7 @@ public class InputController implements InputProcessor {
             }
             default:
             {
-                resManager.getLogData().add("Нажата клавиша " + keycode);
+//                resManager.getLogData().add("Нажата клавиша " + keycode);
                 break;
             }
         }

@@ -1,26 +1,27 @@
-package souless.game.model;
+package souless.game.model.world.entity;
 
+import souless.game.model.GameMap;
 import souless.game.objects.Entity;
 import souless.game.objects.Tile;
 
 import java.util.ArrayList;
 
-public class World {
+public class WorldResource {
     private GameMap Map;
     private String worldName;
     
-    public World()
+    public WorldResource()
     {
         Map = new GameMap();
         worldName = "test_world";
     }
     
-    public World(ArrayList<Tile> gameMap, ArrayList<Entity> entities, int width, int height)
+    public WorldResource(ArrayList<Tile> gameMap, ArrayList<Entity> entities, int width, int height)
     {
         Map = new GameMap(gameMap, entities, width, height);
     }
     
-    public World(String name, ArrayList<Tile> gameMap, ArrayList<Entity> entities, int width, int height)
+    public WorldResource(String name, ArrayList<Tile> gameMap, ArrayList<Entity> entities, int width, int height)
     {
         Map = new GameMap(gameMap, entities, width, height);
         worldName = name;

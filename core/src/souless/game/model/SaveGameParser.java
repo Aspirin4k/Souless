@@ -3,6 +3,7 @@ package souless.game.model;
 import com.badlogic.gdx.math.Vector2;
 import souless.game.model.meta.SavedGameObject;
 import souless.game.model.meta.SavedTexture;
+import souless.game.model.world.entity.WorldResource;
 import souless.game.objects.Entity;
 import souless.game.objects.GameObjectFactory;
 import souless.game.objects.Tile;
@@ -158,7 +159,7 @@ public class SaveGameParser {
      * @return файл мира, восстановленный из сохранения
      * @throws Exception Ошибки, при парсинге файла
      */
-    public World parse(String input) throws Exception {
+    public WorldResource parse(String input) throws Exception {
         String[] buffers = input.trim().split("\n");
         if (buffers.length == 0) throw new Exception("Empty file!");
 
@@ -193,7 +194,7 @@ public class SaveGameParser {
         ArrayList<Tile> grid = parseMap();
         ArrayList<Entity> entities = parseEntities();
 
-        World world = new World(grid, entities, Integer.parseInt(this.parameters.get(Token.map_width)), Integer.parseInt(this.parameters.get(Token.map_height)));
+        WorldResource world = new WorldResource(grid, entities, Integer.parseInt(this.parameters.get(Token.map_width)), Integer.parseInt(this.parameters.get(Token.map_height)));
         return world;
     }
     
@@ -203,7 +204,7 @@ public class SaveGameParser {
      * @param textures используемые в мире текстуры
      * @return строка, представляющая собой файл сохранения
      */
-    public String parse(World world, HashMap<String, SavedTexture> textures)
+    public String parse(WorldResource world, HashMap<String, SavedTexture> textures)
     {
         StringBuilder result = new StringBuilder();
         // Дефолтные идишники, которые будут использоваться при объявлении объектов

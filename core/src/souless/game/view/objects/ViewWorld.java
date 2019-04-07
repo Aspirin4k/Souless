@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import souless.game.model.ResourcesManager;
-import souless.game.model.World;
+import souless.game.model.world.entity.WorldResource;
 
 public class ViewWorld {
     
-    private final World linkedWorld;
+    private final WorldResource linkedWorld;
     
     private final ViewGameMap viewMap;
     private final ViewObject viewPlayer;
@@ -17,7 +17,7 @@ public class ViewWorld {
     
     private OrthographicCamera bufferCamera;
     
-    public ViewWorld(World world, ResourcesManager rM, SpriteBatch batch)
+    public ViewWorld(WorldResource world, ResourcesManager rM, SpriteBatch batch)
     {
         linkedWorld = world;
         resManager = rM;

@@ -1,14 +1,15 @@
 package souless.game;
 
 import org.springframework.context.annotation.*;
+import souless.game.controller.ControllerConfiguration;
 import souless.game.model.ModelConfiguration;
 import souless.game.view.ViewConfiguration;
 
 @Configuration
 @Import({
         ViewConfiguration.class,
-        ModelConfiguration.class
+        ModelConfiguration.class,
+        ControllerConfiguration.class
 })
 public class SoulessConfiguration {
-
 }

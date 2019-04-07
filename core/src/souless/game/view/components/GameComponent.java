@@ -8,16 +8,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import souless.game.model.ResourcesManager;
-import souless.game.model.World;
+import souless.game.model.world.entity.WorldResource;
 import souless.game.objects.GameObject;
 import souless.game.view.ConsoleLog;
 import souless.game.view.IComponent;
 import souless.game.view.objects.ViewWorld;
 
-@Component("GameComponent")
 public class GameComponent implements IComponent {
     public static float CAMERA_WIDTH;
     public static float CAMERA_HEIGHT;
@@ -27,7 +24,7 @@ public class GameComponent implements IComponent {
 
     // Содержим информацию о мире
     private ViewWorld viewWorld;
-    private World GameWorld;
+    private WorldResource GameWorld;
     private ResourcesManager resManager;
     private ConsoleLog log;
 
@@ -47,8 +44,7 @@ public class GameComponent implements IComponent {
 
     float stateTime;
 
-    @Autowired
-    public GameComponent(World world, ResourcesManager rM)
+    public GameComponent(WorldResource world, ResourcesManager rM)
     {
         // Отображение мира в зависимости от размера экрана
 //        switch (Gdx.graphics.getWidth())

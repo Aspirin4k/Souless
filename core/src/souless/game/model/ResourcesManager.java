@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import souless.game.model.world.entity.WorldResource;
 import souless.game.view.objects.ViewObjectFactory;
 
 public class ResourcesManager
@@ -111,7 +112,7 @@ public class ResourcesManager
      * Сохраняет мир в локальный файл
      * @param world мир
      */
-    public void saveWorld(World world)
+    public void saveWorld(WorldResource world)
     {   
        FileHandle fh = Gdx.files.local("saves/" + world.getWorldName() + ".svd");
        SaveGameParser sv = new SaveGameParser();
@@ -124,20 +125,20 @@ public class ResourcesManager
      * @param name название мира
      * @return 
      */
-    public World loadWorld(String name)
+    public WorldResource loadWorld(String name)
     {
         // TODO: пока сохранение представлено в виде текстового файла - после запиливания редактора необходимо переделать в бинарный
         FileHandle fh = Gdx.files.local("saves/" + name + ".svd");
         if (!fh.exists())
         {
             logData.add("Создан новый мир");
-            return new World();
+            return new WorldResource();
         }
         
         try
         {
             SaveGameParser sv = new SaveGameParser();
-            World loadedWorld = sv.parse(fh.readString());
+            WorldResource loadedWorld = sv.parse(fh.readString());
             this.textureManager.setTextureList(sv.getTextureList());
             loadedWorld.setWorldName(name);
             return loadedWorld;
