@@ -1,4 +1,4 @@
-package souless.game.view.components;
+package souless.game.view.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,13 +9,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import souless.game.model.ResourcesManager;
+import souless.game.model.world.IWorldUploadListener;
 import souless.game.model.world.entity.WorldResource;
 import souless.game.objects.GameObject;
 import souless.game.view.ConsoleLog;
 import souless.game.view.IComponent;
 import souless.game.view.objects.ViewWorld;
 
-public class GameComponent implements IComponent {
+public class WorldComponent implements IComponent, IWorldUploadListener {
     public static float CAMERA_WIDTH;
     public static float CAMERA_HEIGHT;
 
@@ -34,18 +35,19 @@ public class GameComponent implements IComponent {
     private BitmapFont font;
 
     // Игровая камера
-    private final OrthographicCamera camera;
-    private final Viewport viewport;
+    private OrthographicCamera camera;
+    private Viewport viewport;
     private GameObject camerasTarget;
 
     // Камера интерфейса
-    private final OrthographicCamera uiCamera;
-    private final Viewport uiViewport;
+    private OrthographicCamera uiCamera;
+    private Viewport uiViewport;
 
     float stateTime;
 
-    public GameComponent(WorldResource world, ResourcesManager rM)
+    public WorldComponent(ResourcesManager rM)
     {
+        this.resManager = rM;
         // Отображение мира в зависимости от размера экрана
 //        switch (Gdx.graphics.getWidth())
 //        {
@@ -63,18 +65,21 @@ public class GameComponent implements IComponent {
 //            }
 //        }
 
+
+    }
+
+    public void onUploadWorld(WorldResource world) {
         CAMERA_WIDTH = 25f;
         CAMERA_HEIGHT = 10f;
 
         // Принадлежности для рисования
         this.batch = new SpriteBatch();
-        this.font = rM.getFont();
+        this.font = this.resManager.getFont();
         this.sprite = new Sprite();
 
         // Мир и интерфейс
-        this.viewWorld = new ViewWorld(world, rM, batch);
+        this.viewWorld = new ViewWorld(world, this.resManager, batch);
         this.GameWorld = world;
-        this.resManager = rM;
 
         // Игровая камера
         this.camera = new OrthographicCamera();
@@ -101,32 +106,34 @@ public class GameComponent implements IComponent {
     @Override
     public void render()
     {
-        stateTime += Gdx.graphics.getDeltaTime();
+        if (null != this.GameWorld) {
+            stateTime += Gdx.graphics.getDeltaTime();
 
-        refreshCameraCoordinates();
+            refreshCameraCoordinates();
 
-        this.camera.update();
-        this.batch.setProjectionMatrix(this.camera.combined);
-        this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            this.camera.update();
+            this.batch.setProjectionMatrix(this.camera.combined);
+            this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            Gdx.gl.glClearColor(0, 0, 0, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        this.batch.begin();
+            this.batch.begin();
 
-        viewWorld.draw(batch, sprite, UI_Y_COORDINATE, camera, stateTime);
+            viewWorld.draw(batch, sprite, UI_Y_COORDINATE, camera, stateTime);
 
-        this.batch.end();
+            this.batch.end();
 
-        this.uiCamera.update();
-        this.batch.setProjectionMatrix(this.uiCamera.combined);
+            this.uiCamera.update();
+            this.batch.setProjectionMatrix(this.uiCamera.combined);
 //        this.font.setColor(Color.BLACK);
 
-        this.batch.begin();
+            this.batch.begin();
 
 //        drawConsoleLog();
 
-        this.batch.end();
+            this.batch.end();
+        }
     }
 
     public void drawConsoleLog()

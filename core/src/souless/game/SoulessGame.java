@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import souless.game.controller.InputController;
+import souless.game.model.world.WorldManager;
 import souless.game.view.IComponent;
 
 public class SoulessGame extends ApplicationAdapter {
@@ -17,6 +18,7 @@ public class SoulessGame extends ApplicationAdapter {
 		this.context = new AnnotationConfigApplicationContext(SoulessConfiguration.class);
 		this.renderer = (IComponent)this.context.getBean("ComponentRenderer");
 		this.inputController = (InputController)this.context.getBean("InputController");
+		this.context.getBean(WorldManager.class).loadWorld("test_world");
 
 		Gdx.input.setInputProcessor(this.inputController);
 	}

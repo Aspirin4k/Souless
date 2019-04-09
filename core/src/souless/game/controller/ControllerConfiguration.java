@@ -4,20 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import souless.game.model.ResourcesManager;
-import souless.game.model.world.WorldManager;
+import souless.game.model.world.WorldUploadConsumer;
 
 @Configuration
 public class ControllerConfiguration {
     @Autowired
-    WorldManager worldManager;
-    @Autowired
     ResourcesManager resourcesManager;
 
     @Bean(name = "InputController")
-    InputController inputController() throws Exception {
+    InputController inputController() {
         return new InputController(
-                this.worldManager.getCurrentWorld(),
                 this.resourcesManager
+        );
+    }
+
+    @Bean(name = "ControllerWorldUploadConsumer")
+    WorldUploadConsumer worldUploadConsumer() {
+        return new WorldUploadConsumer(
+                this.inputController()
         );
     }
 }

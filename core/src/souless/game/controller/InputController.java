@@ -7,20 +7,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import souless.game.model.ResourcesManager;
+import souless.game.model.world.IWorldUploadListener;
 import souless.game.model.world.entity.WorldResource;
 import souless.game.objects.moving.EntityMoving;
 
-public class InputController implements InputProcessor {
+public class InputController implements InputProcessor, IWorldUploadListener {
 
-    private final WorldResource WORLD;
+    private WorldResource WORLD;
 //    private final ObjectRenderer objectRenderer;
     private final ResourcesManager resManager;
     
-    public InputController(WorldResource world, ResourcesManager resM)
+    public InputController(ResourcesManager resM)
     {
-        WORLD = world;
 //        objectRenderer = objR;
         resManager = resM;
+    }
+
+    public void onUploadWorld(WorldResource worldResource) {
+        this.WORLD = worldResource;
     }
     
     @Override
@@ -28,6 +32,10 @@ public class InputController implements InputProcessor {
      * Нажатие клавиши
      */
     public boolean keyDown(int keycode) {
+        if (null == this.WORLD) {
+            return true;
+        }
+
         switch (keycode)
         {
             case Keys.NUMPAD_7:

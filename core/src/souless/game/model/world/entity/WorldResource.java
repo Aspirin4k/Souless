@@ -7,6 +7,11 @@ import souless.game.objects.Tile;
 import java.util.ArrayList;
 
 public class WorldResource {
+    private final int DEFAULT_WIDTH = 40;
+    private final int DEFAULT_HEIGHT = 40;
+
+    private WorldObjectMap<souless.game.model.world.object.Tile> tileMap;
+
     private GameMap Map;
     private String worldName;
     
@@ -14,6 +19,8 @@ public class WorldResource {
     {
         Map = new GameMap();
         worldName = "test_world";
+
+        this.tileMap = new WorldObjectMap<souless.game.model.world.object.Tile>(this.DEFAULT_WIDTH, this.DEFAULT_HEIGHT);
     }
     
     public WorldResource(ArrayList<Tile> gameMap, ArrayList<Entity> entities, int width, int height)
