@@ -1,28 +1,27 @@
 package souless.game.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
+import com.badlogic.gdx.assets.AssetManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import souless.game.model.world.WorldManager;
-import souless.game.model.world.WorldUploadConsumer;
-import souless.game.view.world.WorldComponent;
 
 @Configuration
 public class ModelConfiguration {
-    @Autowired
-    ApplicationEventPublisher eventPublisher;
 
     @Bean
-    ResourcesManager resourcesManager() {
-        return new ResourcesManager();
+    ResourceManager resourcesManager() {
+        return new ResourceManager(
+                this.assetManager(),
+                this.textureManager()
+        );
     }
 
     @Bean
-    WorldManager worldManager() {
-        return new WorldManager(
-                this.resourcesManager(),
-                this.eventPublisher
-        );
+    AssetManager assetManager() {
+        return new AssetManager();
+    }
+
+    @Bean
+    TextureManager textureManager() {
+        return new TextureManager(this.assetManager());
     }
 }

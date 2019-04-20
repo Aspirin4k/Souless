@@ -1,6 +1,6 @@
 package souless.game.view.objects;
 
-import souless.game.model.ResourcesManager;
+import souless.game.model.ResourceManager;
 import souless.game.objects.GameObject;
 
 public class ViewObjectFactory {
@@ -31,7 +31,7 @@ public class ViewObjectFactory {
      * @param resM
      * @return 
      */
-    public static ViewObject getViewTile(GameObject tile, ResourcesManager resM)
+    public static ViewObject getViewTile(GameObject tile, ResourceManager resM)
     {
         switch (resM.geTextureType(tile.getTextureId()))
         {

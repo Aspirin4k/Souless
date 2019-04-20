@@ -3,21 +3,21 @@ package souless.game.view.objects;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import souless.game.model.ResourcesManager;
-import souless.game.model.world.entity.WorldResource;
+import souless.game.model.ResourceManager;
+import souless.game.bundle.world.entity.World;
 
 public class ViewWorld {
     
-    private final WorldResource linkedWorld;
+    private final World linkedWorld;
     
     private final ViewGameMap viewMap;
     private final ViewObject viewPlayer;
     
-    private final ResourcesManager resManager;
+    private final ResourceManager resManager;
     
     private OrthographicCamera bufferCamera;
     
-    public ViewWorld(WorldResource world, ResourcesManager rM, SpriteBatch batch)
+    public ViewWorld(World world, ResourceManager rM, SpriteBatch batch)
     {
         linkedWorld = world;
         resManager = rM;

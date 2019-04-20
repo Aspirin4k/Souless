@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import souless.game.controller.InputController;
-import souless.game.model.world.WorldManager;
+import souless.game.bundle.world.WorldManager;
 import souless.game.view.IComponent;
 
 public class SoulessGame extends ApplicationAdapter {

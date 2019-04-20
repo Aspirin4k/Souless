@@ -3,7 +3,7 @@ package souless.game.view.objects;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import souless.game.model.ResourcesManager;
+import souless.game.model.ResourceManager;
 import souless.game.objects.GameObject;
 import souless.game.objects.Tile;
 
@@ -25,7 +25,7 @@ public abstract class ViewObject {
      * @param batch
      */
     public abstract void generateTexture(ArrayList<Tile> adjancedTiles,
-                                         ResourcesManager resManager, SpriteBatch batch);
+                                         ResourceManager resManager, SpriteBatch batch);
     
     /**
      * Метод отрисовки тайла

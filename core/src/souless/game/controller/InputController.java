@@ -6,24 +6,24 @@ package souless.game.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import souless.game.model.ResourcesManager;
-import souless.game.model.world.IWorldUploadListener;
-import souless.game.model.world.entity.WorldResource;
+import souless.game.model.ResourceManager;
+import souless.game.bundle.world.IWorldUploadListener;
+import souless.game.bundle.world.entity.World;
 import souless.game.objects.moving.EntityMoving;
 
 public class InputController implements InputProcessor, IWorldUploadListener {
 
-    private WorldResource WORLD;
+    private World WORLD;
 //    private final ObjectRenderer objectRenderer;
-    private final ResourcesManager resManager;
+    private final ResourceManager resManager;
     
-    public InputController(ResourcesManager resM)
+    public InputController(ResourceManager resM)
     {
 //        objectRenderer = objR;
         resManager = resM;
     }
 
-    public void onUploadWorld(WorldResource worldResource) {
+    public void onUploadWorld(World worldResource) {
         this.WORLD = worldResource;
     }
     

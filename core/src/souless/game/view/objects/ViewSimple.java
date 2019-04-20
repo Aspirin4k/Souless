@@ -1,7 +1,7 @@
 package souless.game.view.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import souless.game.model.ResourcesManager;
+import souless.game.model.ResourceManager;
 import souless.game.objects.GameObject;
 import souless.game.objects.Tile;
 
@@ -14,7 +14,7 @@ public class ViewSimple extends ViewObject {
     }
 
     @Override
-    public void generateTexture(ArrayList<Tile> adjancedTiles, ResourcesManager resManager, SpriteBatch batch) {
+    public void generateTexture(ArrayList<Tile> adjancedTiles, ResourceManager resManager, SpriteBatch batch) {
         this.texture = resManager.getTexture(this.linkedTile.getTextureId(), 1);
         if (texture == null) texture = resManager.getTexture(linkedTile.getTextureId());
     }

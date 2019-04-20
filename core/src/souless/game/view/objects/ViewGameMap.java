@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import souless.game.model.GameMap;
-import souless.game.model.ResourcesManager;
+import souless.game.model.ResourceManager;
 import souless.game.objects.Entity;
 import souless.game.objects.Tile;
 
@@ -15,7 +15,7 @@ public class ViewGameMap {
     private final ArrayList<ViewObject> viewGrid;
     private final ArrayList<ViewObject> viewEntities;
     
-    public ViewGameMap(GameMap map, ResourcesManager resManager, SpriteBatch batch)
+    public ViewGameMap(GameMap map, ResourceManager resManager, SpriteBatch batch)
     {
         linkedMap = map;
         viewGrid = new ArrayList<ViewObject>();

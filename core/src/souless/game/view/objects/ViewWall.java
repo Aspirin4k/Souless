@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Matrix4;
-import souless.game.model.ResourcesManager;
+import souless.game.model.ResourceManager;
 import souless.game.objects.GameObject;
 import souless.game.objects.GameObjectFactory;
 import souless.game.objects.Tile;
@@ -22,7 +22,7 @@ public class ViewWall extends ViewObject {
     }
 
     @Override
-    public void generateTexture(ArrayList<Tile> adjancedTiles, ResourcesManager resManager, SpriteBatch batch) {
+    public void generateTexture(ArrayList<Tile> adjancedTiles, ResourceManager resManager, SpriteBatch batch) {
         // Соседние ячейки имеют следующие индексы (Разряд бита - 1 - пусто, 0 - стена)
         // 416
         // 0#2
